@@ -61,8 +61,6 @@ UIColor *dataColorAtXY(const gs_pixel *imgData, int pixelsPerRow, int x, int y)
 
 @end
 
-
-
 @implementation SLColorArt
 
 - (id)initWithImage:(UIImage *)image
@@ -77,7 +75,7 @@ UIColor *dataColorAtXY(const gs_pixel *imgData, int pixelsPerRow, int x, int y)
     if (self)
     {
         
-        if (CGSizeEqualToSize(size, CGSizeZero)) {
+        if (CGSizeEqualToSize(size, CGSizeZero) || CGSizeEqualToSize(size, image.size)) {
             self.scaledSize = image.size;
             self.scaledImage = image;
         } else {

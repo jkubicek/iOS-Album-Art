@@ -64,8 +64,10 @@
     cell.detailTextLabel.text = albumName;
 
     MPMediaItemArtwork *artwork = [representativeItem valueForProperty: MPMediaItemPropertyArtwork];
-    UIImage *artworkImage = [artwork imageWithSize:CGSizeMake(100.f, 100.f)];
-    SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:artworkImage];
+
+    CGSize artSize = CGSizeMake(100.f, 100.f);
+    UIImage *artworkImage = [artwork imageWithSize:artSize];
+    SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:artworkImage scaledSize:artSize];
 
     cell.imageView.image = colorArt.scaledImage;
     cell.contentView.backgroundColor = colorArt.backgroundColor;
