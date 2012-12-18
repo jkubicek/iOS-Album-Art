@@ -65,9 +65,15 @@
 
     MPMediaItemArtwork *artwork = [representativeItem valueForProperty: MPMediaItemPropertyArtwork];
 
+    NSDate *startTime = [NSDate date];
+
     CGSize artSize = CGSizeMake(100.f, 100.f);
     UIImage *artworkImage = [artwork imageWithSize:artSize];
     SLColorArt *colorArt = [[SLColorArt alloc] initWithImage:artworkImage scaledSize:artSize];
+
+    NSDate *endTime = [NSDate date];
+    NSTimeInterval time = [endTime timeIntervalSinceDate:startTime];
+    NSLog(@"Time to create SLColorArt: %f", time);
 
     cell.imageView.image = colorArt.scaledImage;
     cell.contentView.backgroundColor = colorArt.backgroundColor;
