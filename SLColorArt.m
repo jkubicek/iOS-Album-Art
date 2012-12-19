@@ -239,9 +239,11 @@ UIColor *dataColorAtXY(const gs_pixel *imgData, int pixelsPerRow, int x, int y)
 	NSCountedSet *imageColors = [[NSCountedSet alloc] initWithCapacity:pixelsWide * pixelsHigh];
 	NSCountedSet *leftEdgeColors = [[NSCountedSet alloc] initWithCapacity:pixelsHigh];
 
-	for ( NSUInteger x = 0; x < pixelsWide; x++ )
+    NSUInteger x, y;
+    x = y = 0;
+    while (x < pixelsWide)
 	{
-		for ( NSUInteger y = 0; y < pixelsHigh; y++ )
+        while (y < pixelsHigh)
 		{
 			UIColor *color = dataColorAtXY(self.imgData.bytes, self.scaledSize.width, x, y);
 
@@ -251,7 +253,9 @@ UIColor *dataColorAtXY(const gs_pixel *imgData, int pixelsPerRow, int x, int y)
 			}
 
 			[imageColors addObject:color];
+            y += 2;
 		}
+        x += 2;
 	}
 
 	*colors = imageColors;
