@@ -35,7 +35,14 @@
     [query setGroupingType: MPMediaGroupingAlbum];
 
     NSArray *albums = [query collections];
-    self.albums = albums;
+    NSMutableArray *albumsWithArt = [NSMutableArray arrayWithCapacity:[albums count]];
+    for (id album in albums) {
+        MPMediaItemArtwork *artwork = [[album representativeItem] valueForProperty:MPMediaItemPropertyArtwork];
+        if (artwork) {
+            [albumsWithArt addObject:album];
+        }
+    }
+    self.albums = [NSArray arrayWithArray:albumsWithArt];
 }
 
 - (void)didReceiveMemoryWarning
